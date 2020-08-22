@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Simple backup">
+    <meta name="author" content="Mikael Nordin">
+
+    <title>Simple backup</title>
+</head>
+<body class="text-center">
+
+<link rel="stylesheet" type="text/css" href="{% static '/css/sign-in.css' %}">
+<link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 
+      crossorigin="anonymous"
+    >
+
+
+<form class="form-signin" method="post">
+    {% csrf_token %}    
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <input type="text" name="username" class="form-control" placeholder="Username...">
+    <br />
+    <input type="password" name="password" class="form-control" placeholder="Password...">   
+    <br />
+
+    {% for message in messages %}
+        <p id="messages">{{message}}</p>
+    {% endfor %}	
+
+    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Login">
+
+    <div class="d-flex justify-content-center links">
+        Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
+    </div>
+</form>
+</body>
+</html>

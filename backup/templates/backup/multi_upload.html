@@ -1,0 +1,14 @@
+{% extends 'backup/base.html' %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="content">
+        <p>{{form.uploaded_file}}</p>
+        <p>{{form.user}}</p>
+        <p><input type="submit" value="Upload"></p>
+    </div>
+</form>
+
+{% endblock %}
