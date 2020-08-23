@@ -2,8 +2,10 @@ from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse
+
 
 # Create your views here.
 from .forms import CreateUserForm, UploadFileForm
@@ -61,6 +63,13 @@ def index(request):
 @login_required(login_url='login')
 def settings(request):
     return render(request, 'backup/settings.html')
+
+
+@login_required(login_url='login')
+def file_browser(request):
+    user_name = request.user
+    print(user_name)
+    return redirect('/media/' + str(user_name))
 
 
 @login_required(login_url='login')
